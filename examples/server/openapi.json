@@ -1,0 +1,321 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "可信联网搜索系统 API",
+    "description": "提供基于信源分层、碰撞检测和摘要生成的可信联网搜索服务",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "description": "健康检查端点",
+        "operationId": "HealthCheck",
+        "responses": {
+          "200": {
+            "description": "服务健康",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "healthy"
+                    },
+                    "service": {
+                      "type": "string",
+                      "example": "trusted-search-api"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "description": "执行可信搜索 (GET方式)",
+        "operationId": "SearchGet",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "搜索查询语句",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "debug",
+            "in": "query",
+            "description": "是否启用调试模式",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "debug_level",
+            "in": "query",
+            "description": "调试级别: quiet, basic, verbose",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "verbose",
+              "enum": ["quiet", "basic", "verbose"]
+            }
+          },
+          {
+            "name": "debug_output",
+            "in": "query",
+            "description": "调试输出位置: stdout, stderr, both",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "stdout",
+              "enum": ["stdout", "stderr", "both"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "搜索成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "服务器内部错误"
+          },
+          "503": {
+            "description": "服务未初始化"
+          }
+        }
+      },
+      "post": {
+        "description": "执行可信搜索 (POST方式)",
+        "operationId": "SearchPost",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "搜索成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "服务器内部错误"
+          },
+          "503": {
+            "description": "服务未初始化"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SearchRequest": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "搜索查询语句"
+          },
+          "debug": {
+            "type": "boolean",
+            "description": "是否启用调试模式",
+            "default": false
+          },
+          "debug_level": {
+            "type": "string",
+            "description": "调试级别: quiet, basic, verbose",
+            "default": "verbose",
+            "enum": ["quiet", "basic", "verbose"]
+          },
+          "debug_output": {
+            "type": "string",
+            "description": "调试输出位置: stdout, stderr, both",
+            "default": "stdout",
+            "enum": ["stdout", "stderr", "both"]
+          }
+        },
+        "required": ["query"]
+      },
+      "SearchResponse": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "原始查询语句"
+          },
+          "summary": {
+            "type": "string",
+            "description": "搜索结果摘要"
+          },
+          "consensus_facts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "共识事实列表"
+          },
+          "disputed_facts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "争议事实列表"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchResultItem"
+            },
+            "description": "搜索结果列表"
+          },
+          "rewrite_result": {
+            "$ref": "#/components/schemas/RewriteResult",
+            "description": "查询改写结果"
+          },
+          "collision_judgments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CollisionJudgment"
+            },
+            "description": "碰撞裁决结果"
+          },
+          "search_time": {
+            "type": "number",
+            "description": "搜索耗时 (秒)"
+          },
+          "total_duration_ms": {
+            "type": "number",
+            "description": "总处理耗时 (毫秒)"
+          },
+          "classified_counts": {
+            "type": "object",
+            "properties": {
+              "white": {
+                "type": "integer",
+                "description": "白名单 (高可信) 结果数量"
+              },
+              "gray": {
+                "type": "integer",
+                "description": "灰名单 (中等可信) 结果数量"
+              },
+              "black": {
+                "type": "integer",
+                "description": "黑名单 (低可信) 结果数量"
+              }
+            },
+            "description": "信源分层统计"
+          },
+          "debug_info": {
+            "type": "object",
+            "description": "调试信息"
+          }
+        }
+      },
+      "SearchResultItem": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "结果标题"
+          },
+          "url": {
+            "type": "string",
+            "description": "结果链接"
+          },
+          "snippet": {
+            "type": "string",
+            "description": "结果摘要"
+          },
+          "score": {
+            "type": "number",
+            "description": "相关性评分"
+          },
+          "classification": {
+            "type": "string",
+            "description": "信源分类: white (高可信), gray (中等可信), black (低可信)"
+          }
+        }
+      },
+      "RewriteResult": {
+        "type": "object",
+        "properties": {
+          "intent": {
+            "type": "string",
+            "description": "查询意图"
+          },
+          "entities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "识别的实体列表"
+          },
+          "time_range": {
+            "type": "string",
+            "description": "时间范围"
+          },
+          "rewritten_queries": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "改写后的查询列表"
+          }
+        }
+      },
+      "CollisionJudgment": {
+        "type": "object",
+        "properties": {
+          "collision_id": {
+            "type": "string",
+            "description": "碰撞ID"
+          },
+          "consensus_level": {
+            "type": "string",
+            "description": "共识度"
+          },
+          "confidence": {
+            "type": "number",
+            "description": "置信度"
+          },
+          "winner": {
+            "type": "string",
+            "description": "裁决方"
+          }
+        }
+      }
+    }
+  }
+}

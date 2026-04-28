@@ -1,0 +1,70 @@
+whitelist:
+  - name: "中国政府网"
+    domain: "www.gov.cn"
+    type: official
+    level: national
+    tags: ["政府", "政策"]
+
+  - name: "新华网"
+    domain: "www.xinhuanet.com"
+    type: official
+    level: national
+    tags: ["新闻", "权威"]
+
+  - name: "人民网"
+    domain: "www.people.com.cn"
+    type: official
+    level: national
+    tags: ["新闻", "权威"]
+
+  - name: "央视网"
+    domain: "www.cctv.com"
+    type: official
+    level: national
+    tags: ["新闻", "视频"]
+
+  - name: "浙江省政府"
+    domain_suffix: ".zj.gov.cn"
+    type: official
+    level: provincial
+
+  - name: "广东省政府"
+    domain_suffix: ".gd.gov.cn"
+    type: official
+    level: provincial
+
+  - name: "中国知网"
+    domain: "kns.cnki.net"
+    type: official
+    level: national
+    tags: ["学术", "论文"]
+
+  - name: "万方数据"
+    domain: "wanfangdata.com.cn"
+    type: official
+    level: national
+    tags: ["学术", "论文"]
+
+  - name: "财新网"
+    domain: "caixin.com"
+    type: media
+    level: national
+    tags: ["财经", "深度"]
+
+  - name: "第一财经"
+    domain: "yicai.com"
+    type: media
+    level: national
+    tags: ["财经"]
+
+  - name: "科学网"
+    domain: "sciencenet.cn"
+    type: media
+    level: national
+    tags: ["科学", "技术"]
+
+  - name: "果壳网"
+    domain: "guokr.com"
+    type: media
+    level: national
+    tags: ["科学", "科普"]

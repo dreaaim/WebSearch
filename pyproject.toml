@@ -1,0 +1,43 @@
+[project]
+name = "trusted-web-search"
+version = "0.1.0"
+description = "可信联网搜索系统 - Trusted Web Search System"
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.28.0",
+    "PyYAML>=6.0",
+    "numpy>=1.24.0",
+    "beautifulsoup4>=4.12.0",
+    "sentence-transformers>=2.2.0",
+    "openai>=1.0.0",
+    "anthropic>=0.20.0",
+    "cohere>=4.0.0",
+    "httpx>=0.25.0",
+]
+
+[project.optional-dependencies]
+js = [
+    "undetected-chromedriver>=3.5.0",
+]
+js-playwright = [
+    "playwright>=1.40.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["web_search", "web_search.core", "web_search.providers", "web_search.classifier", "web_search.resolver", "web_search.summary", "web_search.config", "web_search.filter", "web_search.fetcher", "web_search.rewriter", "web_search.reranker", "web_search.extractor", "web_search.cluster", "web_search.collision", "web_search.trust"]

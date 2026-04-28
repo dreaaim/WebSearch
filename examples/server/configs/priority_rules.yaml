@@ -1,0 +1,30 @@
+priority_rules:
+  kol_thresholds:
+    big: 1000000
+    medium: 100000
+    small: 10000
+
+  source_type_order:
+    official: 10
+    kol: 8
+    media: 5
+    individual: 2
+
+  source_level_order:
+    national: 10
+    provincial: 8
+    municipal: 6
+    local: 4
+
+  classification_base:
+    white: 100
+    gray: 50
+    black: 0
+
+  expertise_weight:
+    high: 1.5
+    medium: 1.2
+    low: 1.0
+
+  relevance_filter:
+    min_score: 3.0

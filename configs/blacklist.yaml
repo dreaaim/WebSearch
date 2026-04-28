@@ -1,0 +1,84 @@
+blacklist:
+  - domain: "金融界"
+    reason: "使用标题党、夸张词汇发布涉企虚假不实新闻，集纳企业负面信息，恶意诋毁抹黑企业"
+    severity: high
+
+  - domain: "中访网"
+    reason: "使用标题党、夸张词汇发布涉企虚假不实新闻，集纳企业负面信息，恶意诋毁抹黑企业"
+    severity: high
+
+  - domain: "全球财说"
+    reason: "使用标题党、夸张词汇发布涉企虚假不实新闻，集纳企业负面信息，恶意诋毁抹黑企业"
+    severity: high
+
+  - domain: "国际投行研究报告"
+    reason: "歪曲解读涉企公开信息，恶意集纳炒作上市公司负面信息，诋毁企业形象声誉"
+    severity: high
+
+  - domain: "IPO超级情报局"
+    reason: "歪曲解读涉企公开信息，恶意集纳炒作拟上市公司负面信息"
+    severity: high
+
+  - domain: "博望财经"
+    reason: "歪曲解读企业财务报表，恶意唱衰企业经营状况"
+    severity: high
+
+  - domain: "固收嘚啵李"
+    reason: "捏造金融机构业绩爆雷、产品兑付逾期等虚假不实信息"
+    severity: high
+
+  - domain: "钞票不睡觉"
+    reason: "以标题党形式发布炒作金融机构虚假不实信息"
+    severity: high
+
+  - domain: "首席商业智慧"
+    reason: "发布炒作银行、信托等金融机构虚假不实信息"
+    severity: high
+
+  - domain: "九号财经"
+    reason: "以标题党形式发布炒作金融机构虚假不实信息"
+    severity: high
+
+  - domain: "通信圈"
+    reason: "以茶水费、商业合作名义向企业索取高额费用，威胁发布虚假不实信息"
+    severity: high
+
+  - domain: "券业行家"
+    reason: "集纳发布涉企负面信息，以商业合作名义敲诈勒索"
+    severity: high
+
+  - domain: "煤文化"
+    reason: "集纳发布涉企负面信息，进行敲诈勒索"
+    severity: high
+
+  - domain_pattern: "*大眼哥*"
+    reason: "汽车领域网络黑嘴，长期恶意诋毁车企、辱骂企业家"
+    severity: high
+
+  - domain_pattern: "*电电加电*"
+    reason: "汽车领域网络黑嘴，长期恶意诋毁车企"
+    severity: high
+
+  - domain_pattern: "*王悟空说车*"
+    reason: "汽车领域商誉诋毁，被封禁后换马甲王武松继续违规"
+    severity: high
+
+  - domain_pattern: "*大嘴博士*"
+    reason: "美妆领域发布炒作测评信息，误导消费者，干扰市场竞争秩序"
+    severity: high
+
+  - domain_pattern: "*article-farm*"
+    reason: "内容农场"
+    severity: medium
+
+  - domain_pattern: "*clickbait*"
+    reason: "标题党"
+    severity: low
+
+  - domain_pattern: "*采集器*"
+    reason: "机器采集内容"
+    severity: medium
+
+  - domain: "sgpjbg.com"
+    reason: "安全验证（CAPTCHA/人机验证）阻止自动化访问"
+    severity: medium

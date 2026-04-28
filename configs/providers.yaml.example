@@ -1,0 +1,22 @@
+providers:
+  searxng:
+    enabled: true
+    base_url: "http://localhost:8080"
+    api_key: null
+    default_engines:
+      - google
+      - bing
+    timeout: 30
+    retry: 3
+
+  tavily:
+    enabled: false
+    api_key: "${TAVILY_API_KEY}"
+    max_results: 10
+    include_answer: true
+
+  exa:
+    enabled: false
+    api_key: "${EXA_API_KEY}"
+    max_results: 10
+    text: true

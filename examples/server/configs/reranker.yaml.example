@@ -1,0 +1,28 @@
+reranker:
+  weights:
+    relevance: 0.3
+    trustworthiness: 0.2
+    freshness: 0.1
+    authority: 0.1
+    external: 0.3
+
+  freshness:
+    period_7d_score: 1.0
+    period_30d_score: 0.8
+    period_90d_score: 0.6
+    period_1y_score: 0.4
+    older_score: 0.2
+
+  external_reranker:
+    enabled: true
+    provider: "openai-compatible"
+    api_key: "your-api-key-here"
+    model: "gte-rerank-v2"
+    base_url: "https://dashscope.aliyuncs.com/compatible-api/v1"
+    batch_size: 32
+
+  top_k: 20
+
+deduplication:
+  enabled: true
+  similarity_threshold: 0.85

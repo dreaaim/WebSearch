@@ -1,0 +1,19 @@
+query_rewriter:
+  divergence:
+    max_queries: 5
+    intent_aware: true
+
+  enhancement:
+    enable_site_filter: true
+    default_sites:
+      - "gov.cn"
+      - "xinhuanet.com"
+      - "people.com.cn"
+      - "cctv.com"
+    enable_time_filter: true
+    default_time_range: "1y"
+
+  llm:
+    model: "glm-4.5"
+    temperature: 0.5
+    max_tokens: 1024

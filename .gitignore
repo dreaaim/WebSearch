@@ -1,0 +1,36 @@
+# Sensitive configuration files
+configs/llm.yaml
+configs/embedding.yaml
+configs/reranker.yaml
+configs/providers.yaml
+
+examples/server/configs/llm.yaml
+examples/server/configs/embedding.yaml
+examples/server/configs/reranker.yaml
+examples/server/configs/providers.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+.trae/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Keep example config files (must be before build/ to work correctly)
+!configs/*.example
+!examples/server/configs/*.example

@@ -1,0 +1,19 @@
+llm:
+  openai:
+    model: "qwen-plus"
+    api_base: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    api_key: "your-api-key-here"
+    temperature: 0.3
+    max_tokens: 2048
+
+  azure:
+    enabled: false
+    api_base: "https://xxx.openai.azure.com"
+    api_key: "${AZURE_OPENAI_KEY}"
+    api_version: "2024-06-01"
+    deployment_name: "gpt-4o"
+
+  anthropic:
+    enabled: false
+    api_key: "${ANTHROPIC_API_KEY}"
+    model: "claude-3-5-sonnet-20241022"
